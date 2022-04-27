@@ -17,6 +17,7 @@
 
 <script>
 export default {
+    name:"HalamanBerita",
     computed:{
         id(){
             return this.$route.params.id;
