@@ -1,5 +1,6 @@
 <template>
   <div>
+      <HeaderComp/>
       <h1 class="judul">
           Berita Terkait
       </h1>
@@ -18,11 +19,13 @@
 <script>
 // import kontainer from '@/components/containerBerita.vue'
 import NewsCard from '@/components/newsCard.vue';
+import HeaderComp from '~/components/headerComp.vue';
 export default {
     components:{
-        // kontainer,
-        NewsCard
-    },
+    // kontainer,
+    NewsCard,
+    HeaderComp
+},
     data(){
         return {
             testing: 'vue'
@@ -56,6 +59,7 @@ export default {
     text-decoration: none;
 }
 .judul{
+    margin-top: 5%;
     text-align: center;
 }
 .item{

@@ -3,8 +3,8 @@ import Axios from 'axios'
 const state = () => ({
     listArtikel: [],
     Page: 2,
-    Kategori: 'technology',
-    searchText: 'ASUS TUF',
+    Kategori: 'general',
+    searchText: 'steam game',
     ApiKey: 'e662876be5954d1c8c843326b941ad91',
     index: 0,
     info: ''
