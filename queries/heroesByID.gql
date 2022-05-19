@@ -1,0 +1,98 @@
+query MyQuery($id: Int) {
+  heroes_general(where: {id: {_eq: $id}}) {
+    attack_type
+    id
+    image_url
+    name
+    quotes
+    summary
+    video_url
+    poster
+    attacktype_icon
+  }
+  abilities(where: {id: {_eq: $id}}) {
+    hero_id
+    id
+    skill_1_icon
+    skill_1_name
+    skill_1_text
+    skill_1_video
+    skill_2_icon
+    skill_2_name
+    skill_2_text
+    skill_2_video
+    skill_3_icon
+    skill_3_name
+    skill_3_text
+    skill_3_video
+    skill_4_icon
+    skill_4_name
+    skill_4_text
+    skill_4_video
+  }
+  attribute(where: {id: {_eq: $id}}) {
+    agi_bonus
+    agi_val
+    hero_id
+    hp
+    hp_bonus
+    icon_url
+    id
+    int_bonus
+    int_val
+    mp
+    mp_bonus
+    primary_attribute
+    str_bonus
+    str_val
+  }
+  complexity(where: {id: {_eq: $id}}) {
+    complexity
+    hero_id
+    id
+  }
+  roles(where: {id: {_eq: $id}}) {
+    carry
+    disabler
+    durable
+    escape
+    hero_id
+    initiator
+    id
+    jungler
+    nuker
+    pusher
+    support
+  }
+  stats(where: {id: {_eq: $id}}) {
+    armor
+    attack_range
+    attack_time
+    damage
+    hero_id
+    id
+    magic_resist
+    move_speed
+    projectile_speed
+    turn_rate
+    vision
+  }
+  talent_tree(where: {id: {_eq: $id}}) {
+    hero_id
+    id
+    talent_entry1
+    talent_entry2
+    talent_entry3
+    talent_entry4
+    talent_entry5
+    talent_entry6
+    talent_entry7
+    talent_entry8
+  }
+  bio(where: {id: {_eq: $id}}) {
+    bio1
+    bio2
+    bio3
+    bio4
+  }
+}

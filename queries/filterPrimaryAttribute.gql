@@ -1,0 +1,7 @@
+query MyQuery($_eq: String = "") {
+  heroes_general(where: {attributes: {primary_attribute: {_eq: $_eq}}}) {
+    id
+    name
+    image_url
+  }
+}

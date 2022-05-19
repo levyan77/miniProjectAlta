@@ -5,7 +5,7 @@
             <div class="backgroundGradient">
             </div>
             <div class="heroNavigator">
-                <a class="ArrowLeftnav" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/arrow_solid_left.png);"></a>
+                <a class="ArrowLeftnav" :href="heroIDnumber-1" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/arrow_solid_left.png);"></a>
                 <a class="CenterGrid" href="/heroes">
                     <div class="gridDot"></div>
                     <div class="gridDot"></div>
@@ -14,85 +14,133 @@
                     <div class="gridDot"></div>
                     <div class="gridDot"></div>
                 </a>
-                <a class="ArrowRightnav" href="/heroes/alchemist" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/arrow_solid_right.png);"></a>
+                <a class="ArrowRightnav" :href="heroIDnumber+1" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/arrow_solid_right.png);"></a>
             </div>
-            <div class="heroPortraitContainer">
-                <video class="heroPortrait" poster="https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/abaddon.png" autoplay preload="auto" loop>
-                    <source type="video/webm" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/abaddon.webm">
-                    <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/abaddon.png">
+            <div
+            v-for="(hero,hero_id) in heroes"
+            :key="hero_id"
+            class="heroPortraitContainer">
+                <video class="heroPortrait" :poster="hero.poster" autoplay preload="auto" loop>
+                    <source type="video/webm" :src="hero.video_url">
+                    <img :src="hero.image">
                 </video>
             </div>
             <div class="fadeContainer fadeBottom">
             </div>
-            <div class="heroSummary">
+            <div
+            v-for="(attribute,attributes_id) in attributes"
+            :key="'A' + attributes_id"
+            class="heroSummary">
                 <div class="heroTypeTitle">
-                    <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_strength.png" class="heroPage_PrimaryStatIcon">
-                    <div class="PrimaryStat">Strength</div>
+                    <img :src="attribute.icon_url" class="heroPage_PrimaryStatIcon">
+                    <div class="PrimaryStat">{{attribute.primary_attribute}}</div>
                 </div>
-                <div class="heroName">Abaddon</div>
-                <div class="heroOneLiner">
-                    Shields his allies or himself from attacks
+                <div
+                v-for="(hero,hero_id) in heroes"
+                :key="hero_id"
+                class="heroNameSmall">{{hero.name}}</div>
+                <div
+                v-for="(hero,hero_id) in heroes"
+                :key="'B' + hero_id"
+                class="heroOneLiner">
+                    {{hero.quotes}}
                 </div>
                 <div class="bioSumContainer">
-                    <div class="bioContainer hidden">
-                        The Font of Avernus is the source of a family's strength, a crack in primal stones from which vapors of prophetic power have issued for generations. Each newborn of the cavernous House Avernus is bathed in the black mist, and by this baptism they are given an innate connection to the mystic energies of the land. They grow up believing themselves fierce protectors of their lineal traditions, the customs of the realm--but what they really are protecting is the Font itself. And the motives of the mist are unclear.
+                    <div
+                    v-for="(bio,bio_id) in bios"
+                    :key="bio_id"
+                    class="bioContainer hidden" :style="{opacity: computedHidden, zIndex: computedZindex1}">
+                       {{bio.bio1}}
                         <br>
                         <br>
-                        When the infant Abaddon was bathed in the Font, they say something went awry. In the child's eyes there flared a light of comprehension that startled all present and set the sacerdotes to whispering. He was raised with every expectation of following the path all scions of Avernus took--to train in war, that in times of need he might lead the family's army in defense of the ancestral lands. But Abaddon was always one apart. Where others trained with weapons, he bent himself to meditation in the presence of the mist. He drank deep from the vapors that welled from the Font, learning to blend his spirit with the potency that flowed from far beneath the House; he became a creature of the black mist.
+                        {{bio.bio2}}
                         <br>
                         <br>
-                        There was bitterness within the House Avernus--elders and young alike accusing him of neglecting his responsibilities. But all such accusations stopped when Abaddon rode into battle, and they saw how the powers of the mist had given him mastery over life and death beyond those of any lord the House had ever known.
-                        <div class="showBio">Close History</div>
+                        {{bio.bio3}}
+                        <br>
+                        <br>
+                        {{bio.bio4}}
+                        <div class="showBio" @click="setHiddenRev">Close History</div>
                     </div>
-                    <div class="summaryContainer">
-                        <div class="heroLore">
-                            Able to transform enemy attacks into self-healing, Abaddon can survive almost any assault. Shielding allies and launching his double-edged coil at a friend or foe, he is always ready to ride into the thick of battle.
-                            <div class="showBio">Read Full History</div>
+                    <div :style="{opacity: computedOpacity, zIndex: computedZindex2}" class="summaryContainer">
+                        <div
+                        v-for="(hero,hero_id) in heroes"
+                        :key="'C' + hero_id"
+                        class="heroLore">
+                            {{hero.summary}}
+                            <div class="showBio" @click="setHidden" >Read Full History</div>
                         </div>
                         <div>
                             <div class="heroTitle">Attack Type</div>
-                            <div class="attackTypeDetail">
-                                <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/melee.svg" class="attackTypeIcon">
-                                <div class="value">Melee</div>
+                            <div
+                            v-for="(hero,hero_id) in heroes"
+                            :key="hero_id"
+                            class="attackTypeDetail">
+                                <img :src="hero.attacktype_icon" class="attackTypeIcon">
+                                <div class="value">{{hero.attack_type}}</div>
                             </div>
                         </div>
-                        <div>
+                        <div
+                            v-for="(complexityVal,complexity_id) in complexity"
+                            :key="complexity_id"
+                        >
                             <div class="heroTitle">Complexity</div>
-                            <div class="pipContainer">
+                            <div v-if="complexityVal.complexity == 1" class="pipContainer">
                                 <div class="diamondPip filled"></div>
                                 <div class="diamondPip"></div>
                                 <div class="diamondPip"></div>
                             </div>
+                            <div v-if="complexityVal.complexity == 2" class="pipContainer">
+                                <div class="diamondPip filled"></div>
+                                <div class="diamondPip filled"></div>
+                                <div class="diamondPip"></div>
+                            </div>
+                            <div v-if="complexityVal.complexity == 3" class="pipContainer">
+                                <div class="diamondPip filled"></div>
+                                <div class="diamondPip filled"></div>
+                                <div class="diamondPip filled"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="heroVerticalBar">
-                <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_strength.png" class="heroVerBarIcon">
-                <div class="heroBarName">Abaddon</div>
-                <div class="heroID">1</div>
+            <div
+             v-for="(hero,hero_id) in heroes"
+             :key="'D' + hero_id"
+            class="heroVerticalBar">
+                <div
+                 v-for="(attribute,attributes_id) in attributes"
+                 :key="'F' + attributes_id"
+                >
+                  <img :src="attribute.icon_url" class="heroVerBarIcon">
+                </div>
+                <div class="heroBarName">{{hero.name}}</div>
+                <div class="heroID">{{hero.id}}</div>
                 <div class="heroBarLine"></div>
             </div>
-            <div class="topAbilitySelector">
+            <div
+             v-for="(ability,ability_id) in abilities"
+             :key="ability_id"
+            class="topAbilitySelector">
                 <div class="title">Abilities</div>
                 <div class="abilityList">
                     <div class="topAbilityContainer">
                         <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/talents.svg">
                     </div>
                     <div class="topAbilityContainer">
-                        <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/abaddon_death_coil.png"
+                        <img :src="ability.skill_1_icon"
                         class="abilitySelectable">
                     </div>
                     <div class="topAbilityContainer">
-                        <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/abaddon_aphotic_shield.png"
+                        <img :src="ability.skill_2_icon"
                         class="abilitySelectable">
                     </div>
                     <div class="topAbilityContainer">
-                        <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/abaddon_frostmourne.png"
+                        <img :src="ability.skill_3_icon"
                         class="abilitySelectable">
                     </div>
                     <div class="topAbilityContainer">
-                        <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/abaddon_borrowed_time.png"
+                        <img :src="ability.skill_4_icon"
                         class="abilitySelectable">
                     </div>
                 </div>
@@ -102,47 +150,58 @@
                 <div class="detailsBar">
                     <div class="detailsAttribute">
                         <div class="topAttributesSection">
-                            <div class="portraitContainer">
-                                <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/abaddon.png"
+                            <div
+                            v-for="(hero,hero_id) in heroes"
+                            :key="hero_id"
+                            class="portraitContainer">
+                                <img :src="hero.image_url"
                                 class="portrait">
-                                <div class="healthBar">
-                                    <div class="numberMajor">640</div>
-                                    <div class="numberMinor">
-                                        +
-                                        3.2
+                                <div
+                                v-for="(attribute,attributes_id) in attributes"
+                                :key="'D' + attributes_id"
+                                >
+                                    <div class="healthBar">
+                                        <div class="numberMajor">{{attribute.hp}}</div>
+                                        <div class="numberMinor">
+                                            +
+                                            {{attribute.hp_bonus}}
+                                        </div>
+                                    </div>
+                                    <div class="manaBar">
+                                        <div class="numberMajor">{{attribute.mp}}</div>
+                                        <div class="numberMinor">
+                                            +
+                                            {{attribute.mp_bonus}}
+                                        </div>                                    
                                     </div>
                                 </div>
-                                <div class="manaBar">
-                                    <div class="numberMajor">291</div>
-                                    <div class="numberMinor">
-                                        +
-                                        1.2
-                                    </div>                                    
-                                </div>
                             </div>
-                            <div class="attributesContainer">
+                            <div
+                            v-for="(attribute,attributes_id) in attributes"
+                            :key="'E' + attributes_id"
+                            class="attributesContainer">
                                 <div class="singleAttributeContainer">
                                     <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_strength.png"
                                     class="attributeIcon">
-                                    <div class="attributeValue">22</div>
+                                    <div class="attributeValue">{{attribute.str_val}}</div>
                                     <div class="attributeGain">
-                                        +2.6
+                                        {{attribute.str_bonus}}
                                     </div>
                                 </div>
                                 <div class="singleAttributeContainer">
                                     <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_agility.png"
                                     class="attributeIcon">
-                                    <div class="attributeValue">23</div>
+                                    <div class="attributeValue">{{attribute.agi_val}}</div>
                                     <div class="attributeGain">
-                                        +1.5
+                                        {{attribute.agi_bonus}}
                                     </div>
                                 </div>
                                 <div class="singleAttributeContainer">
                                     <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_intelligence.png"
                                     class="attributeIcon">
-                                    <div class="attributeValue">18</div>
+                                    <div class="attributeValue">{{attribute.int_val}}</div>
                                     <div class="attributeGain">
-                                        +2.0
+                                        {{attribute.int_bonus}}
                                     </div>
                                 </div>
                             </div>
@@ -152,69 +211,72 @@
                     <div class="verticalSeparator">
                         <div class="separatorContent"></div>
                     </div>
-                    <div class="detailsRoles">
+                    <div
+                    v-for="(role,role_id) in roles"
+                    :key="role_id"                    
+                    class="detailsRoles">
                         <div class="rolesList">
                             <div class="role">
                                 <div class="roleName">Carry</div>
                                 <div class="roleBarContainer">
                                     <div class="roleBarBackground"></div>
-                                    <div class="roleBarFilled" style="width:33.3%"></div>
+                                    <div class="roleBarFilled" :style="`width:${role.carry}%`"></div>
                                 </div>
                             </div>
                             <div class="role">
                                 <div class="roleName">Support</div>
                                 <div class="roleBarContainer">
                                     <div class="roleBarBackground"></div>
-                                    <div class="roleBarFilled" style="width:66.6%"></div>
+                                    <div class="roleBarFilled" :style="`width:${role.support}%`"></div>
                                 </div>
                             </div>
                             <div class="role">
                                 <div class="roleName">Nuker</div>
                                 <div class="roleBarContainer">
                                     <div class="roleBarBackground"></div>
-                                    <div class="roleBarFilled" style="width:0%"></div>
+                                    <div class="roleBarFilled" :style="`width:${role.nuker}%`"></div>
                                 </div>
                             </div>
                             <div class="role">
                                 <div class="roleName">Disabler</div>
                                 <div class="roleBarContainer">
                                     <div class="roleBarBackground"></div>
-                                    <div class="roleBarFilled" style="width:0%"></div>
+                                    <div class="roleBarFilled" :style="`width:${role.disabler}%`"></div>
                                 </div>
                             </div>
                             <div class="role">
                                 <div class="roleName">Jungler</div>
                                 <div class="roleBarContainer">
                                     <div class="roleBarBackground"></div>
-                                    <div class="roleBarFilled" style="width:0%"></div>
+                                    <div class="roleBarFilled" :style="`width:${role.jungler}%`"></div>
                                 </div>
                             </div>
                             <div class="role">
                                 <div class="roleName">Durable</div>
                                 <div class="roleBarContainer">
                                     <div class="roleBarBackground"></div>
-                                    <div class="roleBarFilled" style="width:66.6%"></div>
+                                    <div class="roleBarFilled" :style="`width:${role.durable}%`"></div>
                                 </div>
                             </div>
                             <div class="role">
                                 <div class="roleName">Escape</div>
                                 <div class="roleBarContainer">
                                     <div class="roleBarBackground"></div>
-                                    <div class="roleBarFilled" style="width:0%"></div>
+                                    <div class="roleBarFilled" :style="`width:${role.escape}%`"></div>
                                 </div>
                             </div>
                             <div class="role">
                                 <div class="roleName">Pusher</div>
                                 <div class="roleBarContainer">
                                     <div class="roleBarBackground"></div>
-                                    <div class="roleBarFilled" style="width:0%"></div>
+                                    <div class="roleBarFilled" :style="`width:${role.pusher}%`"></div>
                                 </div>
                             </div>
                             <div class="role">
                                 <div class="roleName">Initiator</div>
                                 <div class="roleBarContainer">
                                     <div class="roleBarBackground"></div>
-                                    <div class="roleBarFilled" style="width:0%"></div>
+                                    <div class="roleBarFilled" :style="`width:${role.initiator}%`"></div>
                                 </div>
                             </div>
                         </div>
@@ -224,7 +286,10 @@
                         <div class="separatorContent"></div>
                     </div>
                     <div class="detailsStats">
-                        <div class="statsList">
+                        <div
+                        v-for="(stat,stat_id) in stats"
+                        :key="stat_id"  
+                        class="statsList">
                             <div class="heroValuesSection">
                                 <div class="heroValueTitle">Attack</div>
                                 <div class="heroValueElement">
@@ -232,7 +297,7 @@
                                     class="heroValueIcon">
                                     <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
-                                            <span v-bind="attrs" v-on="on">50-60</span>
+                                            <span v-bind="attrs" v-on="on">{{stat.damage}}</span>
                                         </template>
                                         <span>Damage</span>
                                     </v-tooltip>  
@@ -242,7 +307,7 @@
                                     class="heroValueIcon">
                                     <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
-                                            <span v-bind="attrs" v-on="on">1.7</span>
+                                            <span v-bind="attrs" v-on="on">{{stat.attack_time}}</span>
                                         </template>
                                         <span>Attack Time</span>
                                     </v-tooltip>                                  
@@ -252,7 +317,7 @@
                                     class="heroValueIcon">
                                     <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
-                                            <span v-bind="attrs" v-on="on">150</span>
+                                            <span v-bind="attrs" v-on="on">{{stat.attack_range}}</span>
                                         </template>
                                         <span>Attack Range</span>
                                     </v-tooltip>  
@@ -262,7 +327,7 @@
                                     class="heroValueIcon">
                                     <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
-                                            <span v-bind="attrs" v-on="on">900</span>
+                                            <span v-bind="attrs" v-on="on">{{stat.projectile_speed}}</span>
                                         </template>
                                         <span>Projectile Speed</span>
                                     </v-tooltip>  
@@ -275,7 +340,7 @@
                                     class="heroValueIcon">
                                     <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
-                                            <span v-bind="attrs" v-on="on">2.8</span>
+                                            <span v-bind="attrs" v-on="on">{{stat.armor}}</span>
                                         </template>
                                         <span>Armor</span>
                                     </v-tooltip>  
@@ -285,7 +350,7 @@
                                     class="heroValueIcon">
                                     <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
-                                            <span v-bind="attrs" v-on="on">25%</span>
+                                            <span v-bind="attrs" v-on="on">{{stat.magic_resist}}%</span>
                                         </template>
                                         <span>Magic Resist</span>
                                     </v-tooltip>  
@@ -298,7 +363,7 @@
                                     class="heroValueIcon">
                                     <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
-                                            <span v-bind="attrs" v-on="on">325</span>
+                                            <span v-bind="attrs" v-on="on">{{stat.move_speed}}</span>
                                         </template>
                                         <span>Movement Speed</span>
                                     </v-tooltip>  
@@ -308,7 +373,7 @@
                                     class="heroValueIcon">
                                     <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
-                                            <span v-bind="attrs" v-on="on">0.6</span>
+                                            <span v-bind="attrs" v-on="on">{{stat.turn_rate}}</span>
                                         </template>
                                         <span>Turn Rate</span>
                                     </v-tooltip>  
@@ -318,7 +383,7 @@
                                     class="heroValueIcon">
                                     <v-tooltip top>
                                         <template v-slot:activator="{on, attrs}">
-                                            <span v-bind="attrs" v-on="on">1800 / 800</span>
+                                            <span v-bind="attrs" v-on="on">{{stat.vision}}</span>
                                         </template>
                                         <span>Vision</span>
                                     </v-tooltip>  
@@ -333,11 +398,146 @@
 </template>
 
 <script>
+import heroesByID from '~/queries/heroesByID.gql'
 import HeaderComp from '~/components/headerComp.vue';
 export default {
     name: "HeroesDetails",
     components: { HeaderComp },
     setup() {
+    },
+    data(){
+        return{
+            opacity: 100,
+            hidden: 0,
+            zIndex1: 0,
+            zIndex2: 4,
+        }
+    },
+    computed:{
+        heroID(){
+            return this.$route.params.id;
+        },
+        heroIDnumber(){
+            return parseInt(this.heroID)
+        },
+        computedHidden(){
+            return this.hidden
+        },
+        computedOpacity(){
+            return this.opacity
+        },
+        computedZindex1(){
+            return this.zIndex1
+        },
+        computedZindex2(){
+            return this.zIndex2
+        }
+    },
+    watch:{
+        heroIDnumber(){
+            if(this.heroIDnumber <=  1){
+                this.setID()
+            }
+        }
+    },
+    methods:{
+      setHidden(){
+          this.opacity = 0;
+          this.hidden = 100;
+          this.zIndex1 = 4
+          this.zIndex2 = 0
+          return [this.opacity,this.hidden]
+      },
+      setHiddenRev(){
+          this.opacity = 100;
+          this.hidden = 0;
+          this.zIndex1 = 0
+          this.zIndex2 = 4
+          return [this.opacity,this.hidden,this.zIndex1, this.zIndex2]
+      },
+      setID(){
+          this.heroIDnumber = 1
+          return this.heroIDnumber
+      }
+    },
+    apollo: {
+        heroes: {
+            query: heroesByID,
+            variables(){
+                return{
+                    id: this.heroID,
+                }
+            },
+            update(data){
+                return data.heroes_general
+            }            
+        },
+        attributes: {
+            query: heroesByID,
+            variables(){
+                return{
+                    id: this.heroID,
+                }
+            },
+            update(data){
+                return data.attribute
+            }
+        },
+        complexity: {
+            query: heroesByID,
+            variables(){
+                return{
+                    id: this.heroID,
+                }
+            },
+            update(data){
+                return data.complexity
+            }
+        },
+        bios: {
+            query: heroesByID,
+            variables(){
+                return{
+                    id: this.heroID,
+                }
+            },
+            update(data){
+                return data.bio
+            }
+        },
+        roles: {
+            query: heroesByID,
+            variables(){
+                return{
+                    id: this.heroID,
+                }
+            },
+            update(data){
+                return data.roles
+            }
+        },
+        stats: {
+            query: heroesByID,
+            variables(){
+                return{
+                    id: this.heroID,
+                }
+            },
+            update(data){
+                return data.stats
+            }
+        },
+        abilities: {
+            query: heroesByID,
+            variables(){
+                return {
+                    id: this.heroID
+                }
+            },
+            update(data){
+                return data.abilities
+            }
+        }
     },
 }
 </script>
@@ -463,7 +663,7 @@ export default {
     -webkit-mask-image: linear-gradient(to top, transparent 10%, black 50%);
 }
 .heroSummary{
-    margin-top: 100px;
+    margin-top: 60px;
     margin-left: 30px;
     width: 35%;
     height: calc(90% - 100px);
@@ -505,6 +705,16 @@ export default {
     letter-spacing: 2px;
     color: #fff;
 }
+.heroNameSmall{
+    margin-top: 12px;
+    font-family: 'Cinzel', serif;
+    line-height: 110%;
+    font-size: 60px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+}
 .heroOneLiner{
     font-size: 18px;
     font-weight: bold;
@@ -537,10 +747,10 @@ export default {
     transition-property: opacity;
     transition-timing-function: ease-in-out;
     transition-duration: .2s;
-    /* z-index: 4; */
+    z-index: 4;
 }
 .hidden{
-    opacity: 0;
+    /* opacity: 0; */
     z-index: 0;
 }
 .showBio{

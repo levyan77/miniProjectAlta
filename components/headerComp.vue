@@ -10,10 +10,10 @@
             <div class="optionsSide">
                 <div class="languageSelector"></div>
                     <div class="languageWrapper">
-                        <div class="languageIcon"></div>
+                        <!-- <div class="languageIcon"></div>
                         <span>Select Language</span>
                         <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/arrow_over.png"
-                        class="languageArrow">
+                        class="languageArrow"> -->
                     </div>
             </div>
         </div>

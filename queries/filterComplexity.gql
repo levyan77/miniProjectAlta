@@ -1,0 +1,7 @@
+query MyQuery($_eq: Int) {
+  heroes_general(where: {complexities: {complexity: {_eq: $_eq}}}) {
+    id
+    name
+    image_url
+  }
+}

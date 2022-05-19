@@ -90,12 +90,14 @@
         <div class="heroGridRow row0" style="width: 13260px;">
         <dynamic-marquee direction="row">
           <div class="marquee-wrapper">
-  	        <a href="/heroes/abaddon">
-              <img class="heroIcon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/abaddon.png">
-            </a>
-  	        <a href="/heroes/alchemist" >
-              <img class="heroIcon" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/alchemist.png">
-            </a>
+            <div
+            v-for="(hero,hero_id) in heroes"
+            :key="hero_id"
+            >
+              <a :href="`/heroes/${hero.id}`">
+                <img class="heroIcon" :src="hero.image_url">
+              </a>
+            </div>
 	        </div>
           </dynamic-marquee>
         </div>
@@ -106,6 +108,7 @@
 
 <script>
 import DynamicMarquee from 'vue-dynamic-marquee'
+import heroesQuery from '~/queries/heroesData.gql'
 import aosMixin from '~/mixins/aos'
 import BlogCapsule from '~/components/blogCapsule.vue'
 
@@ -123,7 +126,15 @@ export default {
       return{
         hoverPause: false
       }
-    }
+    },
+    apollo: {
+        heroes: {
+            query: heroesQuery,
+            update(data){
+                return data.heroes_general
+            }            
+        }
+    },
 }
 </script>
 

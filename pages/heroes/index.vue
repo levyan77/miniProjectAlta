@@ -8,39 +8,39 @@
   </div>
 
   <div class="heroFilter">
-    <div class="filterLabel">Filter Heroes</div>
+    <div class="filterLabel">search mode : {{filterSearch}}</div>
     <div class="spesificFilterContainer">
         <div class="selectorLabel">Attribute</div>
-        <div id="str" class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-str-active.png);"></div>
-        <div id="agi" class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-agi-active.png);"></div>
-        <div id="int" class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-int-active.png);"></div>
+        <div id="str" class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-str-active.png);" @click="setFilterStr"></div>
+        <div id="agi" class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-agi-active.png);" @click="setFilterAgi"></div>
+        <div id="int" class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-int-active.png);" @click="setFilterInt"></div>
     </div>
     <div class="spesificFilterContainer">
         <div class="selectorLabel">Complexity</div>
-        <div class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-diamond.png);"></div>
-        <div class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-diamond.png);"></div>
-        <div class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-diamond.png);"></div>
+        <div class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-diamond.png);" @click="setFilterComplex1"></div>
+        <div class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-diamond.png);" @click="setFilterComplex2"></div>
+        <div class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-diamond.png);" @click="setFilterComplex3"></div>
     </div>
     <div class="searchBarContainer">
       <div class="searchBar">
           <div class="iconSearch" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/search.svg);"></div>
-          <form class="form">
-            <input class="input" type="text" value="">
-          </form>
+          <div class="form">
+            <input v-model="searchKey" class="input" type="text" @keyup.enter="setSearchKey(searchKey)" >
+          </div>
       </div>
     </div>
   </div>
 
   <div class="gridList" style="height: 500px;" data-aos="fade-up" data-aos-duration="2000">
   <a
-    v-for="(item,i) in items"
+    v-for="(hero,i) in heroes"
     :key="i"
-    class="heroIcon" :href="link+item.name" :style="`background-image: url(${item.icon})`"
+    class="heroIcon" :href="link+hero.id" :style="`background-image: url(${hero.image_url})`"
     >
       <div class="heroNameContainer">
-        <img :src="item.attributeIcon" class="PrimaryStatIcon">
+        <img :src="hero.image_url" class="PrimaryStatIcon">
         <div class="heroName">
-          {{item.name}}
+          {{hero.name}}
         </div>
       </div>
     
@@ -154,6 +154,10 @@
 
 <script>
 
+import filterSearch from '~/queries/filterSearch.gql'
+import filterComplexity from '~/queries/filterComplexity.gql'
+import filterPrimaryAttribute from '~/queries/filterPrimaryAttribute.gql'
+import heroesQuery from '~/queries/heroesData.gql'
 import headerComp from '~/components/headerComp.vue'
 import aosMixin from '~/mixins/aos'
 
@@ -161,44 +165,148 @@ export default {
   name: 'HeroesPage',
   components: { headerComp },
   mixins: [aosMixin],
+  apollo: {
+    heroes: {
+        query(){
+          if(this.filterStr === false && this.filterAgi === false && this.filterInt === false && this.filterComplex1 === false  && this.filterComplex2 === false  && this.filterComplex3 === false && this.filterSearch === false){
+            return heroesQuery
+          }
+
+          else if (this.filterSearch === true){
+            return filterSearch 
+          }
+
+          else if (this.filterComplex1 === true  || this.filterComplex2 === true || this.filterComplex3 === true){
+            return filterComplexity      
+          }
+
+          else if(this.filterStr === true || this.filterAgi === true || this.filterInt === true){
+            return filterPrimaryAttribute 
+          }
+        },
+        variables(){
+          if(this.filterStr === false && this.filterAgi === false && this.filterInt === false && this.filterComplex === false){
+            return{}
+          } else if(this.filterSearch === true){
+            return{
+              "_eq": this.searchKey
+            }
+          } else if(this.filterComplex1 === true && this.filterComplex2 === false && this.filterComplex3 === false){
+            return{
+              "_eq": 1
+            }
+          } else if(this.filterComplex1 === false && this.filterComplex2 === true && this.filterComplex3 === false){
+            return{
+              "_eq": 2
+            }
+          } else if(this.filterComplex1 === false && this.filterComplex2 === false && this.filterComplex3 === true){
+            return{
+              "_eq": 3
+            }
+          } else if(this.filterStr === true && this.filterAgi === false && this.filterInt === false){
+            return{
+              "_eq": "strength"
+            }
+          }
+           else if(this.filterStr === false && this.filterAgi === true && this.filterInt === false){
+            return{
+              "_eq": "agility"
+            }
+          }
+           else if(this.filterStr === false && this.filterAgi === false && this.filterInt === true){
+            return{
+              "_eq": "intelligence"
+            }
+          }
+        },
+        update(data){
+          return data.heroes_general
+        }
+
+        // heroes: {
+        //     query: heroesQuery,
+        //     update(data){
+        //         return data.heroes_general
+        //     }            
+        // },
+        // attribute: {
+        //     query: heroesQuery,
+        //     update(data){
+        //         return data.attribute
+        //     }            
+        // }
+    }
+    },
   data(){
     return{
+      searchKey: "",
+      filterSearch: false,
+      filterComplex1: false,
+      filterComplex2: false,
+      filterComplex3: false,
       filterStr: false,
       filterAgi: false,
+      filterInt: false,
       link: "/heroes/",
-      items: [
-                {
-                    icon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/abaddon.png",
-                    name: "Abaddon",
-                    attribute: "str",
-                    attributeIcon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_strength.png",
-                    to: "/abaddon",
-                },
-                {
-                    icon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/alchemist.png",
-                    name: "Alchemist",
-                    attribute: "agi",
-                    attributeIcon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_agility.png",
-                    to: "/alchemist",
-                },
-                {
-                    icon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/ancient_apparition.png",
-                    name: "Ancient Apparition",
-                    attribute: "int",
-                    attributeIcon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_intelligence.png",
-                    to: "/alchemist",
-                },
-            ],
+      // items: [
+      //           {
+      //               icon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/abaddon.png",
+      //               name: "Abaddon",
+      //               attribute: "str",
+      //               attributeIcon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_strength.png",
+      //               to: "/abaddon",
+      //           },
+      //           {
+      //               icon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/alchemist.png",
+      //               name: "Alchemist",
+      //               attribute: "agi",
+      //               attributeIcon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_agility.png",
+      //               to: "/alchemist",
+      //           },
+      //           {
+      //               icon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/ancient_apparition.png",
+      //               name: "Ancient Apparition",
+      //               attribute: "int",
+      //               attributeIcon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_intelligence.png",
+      //               to: "/alchemist",
+      //           },
+      //       ],
     }
   },
   methods:{
-    filterStrOn(){
-      this.filterStr = true
+    setFilterStr(){
+      this.filterStr = !this.filterStr
       this.filterAgi = false
+      this.filterInt = false
     },
-    filterAgiOn(){
+    setFilterAgi(){
       this.filterStr = false
-      this.filterAgi = true
+      this.filterAgi = !this.filterAgi
+      this.filterInt = false
+    },
+    setFilterInt(){
+      this.filterStr = false
+      this.filterAgi = false
+      this.filterInt = !this.filterInt
+    },
+    setFilterComplex1(){
+      this.filterComplex1 = !this.filterComplex1
+      this.filterComplex2 = false
+      this.filterComplex3 = false
+    },
+    setFilterComplex2(){
+      this.filterComplex1 = false
+      this.filterComplex2 = !this.filterComplex2
+      this.filterComplex3 = false
+    },
+    setFilterComplex3(){
+      this.filterComplex1 = false
+      this.filterComplex2 = false
+      this.filterComplex3 = !this.filterComplex3
+    },
+    setSearchKey(param){
+      this.filterSearch = !this.filterSearch;
+      this.searchKey = param;
     }
   }
 }

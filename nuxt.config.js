@@ -56,7 +56,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'https://weekly-task-vue-levy.hasura.app/v1/graphql',
+        httpEndpoint: 'https://relieved-honeybee-78.hasura.app/v1/graphql',
       }
     }
   },
