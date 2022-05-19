@@ -139,6 +139,9 @@ export default {
 </script>
 
 <style>
+.v-application--wrap{
+  overflow-x: hidden;
+}
   .video{
     height: 100%;
     object-fit: cover;

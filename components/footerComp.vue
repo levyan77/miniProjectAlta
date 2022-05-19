@@ -48,4 +48,16 @@ export default {
     width: 500px;
     margin: 0 auto;
 }
+@media (max-width: 375px){
+.Logos{
+    width: 100px;
+    justify-content: center;
+}
+.Legal{
+    font-size: 10px;
+    padding: 0;
+    width: 100%;
+}
+}
+
 </style>
