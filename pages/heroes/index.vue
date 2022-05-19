@@ -609,6 +609,47 @@ export default {
   width: 100%;
   height: 100%;
 }
+  @media  (max-width:376px){
+    .heroTitle{
+      font-size: 5vw;
+    }
+    .heroSubTitle{
+      margin: 4px 0px;
+      font-size: 11px;
+    }
+    .heroFilter{
+      width: 750px;
+      flex-direction: column;
+    }
+    .filterLabel{
+      margin: 20px 0px;
+      display: block;
+    }
+    .spesificFilterContainer{
+      margin: 4px 0px;
+    }
+    .selectorLabel{
+      font-size: 7px;
+    }
+    .filterIcon{
+      width: 15px;
+      height: 10px;
+      margin-left: 0px;
+    }
+    .searchBarContainer{
+      margin: 10px 0px;
+      width: 100%;
+      justify-content: center;
+    }
+    .heroIcon{
+      width: 100px;
+      height: 50px;
+      margin-right: 0px;   
+    }
+    .gridList{
+      width: 338px;
+    }
+  }
 /* .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;

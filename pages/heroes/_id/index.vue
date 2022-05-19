@@ -705,11 +705,10 @@ export default {
     position: absolute;
     transform: skewY(-45deg) translateX(-50vw);
     overflow: hidden;
-    animation-duration: 1.5s;
+    /* animation-duration: 1.5s;
     animation-timing-function: ease-out;
     animation-delay: 0s;
-    animation-iteration-count: 1;
-    animation-name: heropage_BarIn_3WL4m;
+    animation-iteration-count: 1; */
 }
 .heroNavigator{
     width: 150px;
@@ -781,11 +780,10 @@ export default {
     justify-content: center;
     /* align-items: center; */
     pointer-events: none;
-    animation-duration: 1.3s;
+    /* animation-duration: 1.3s;
     animation-timing-function: ease-out;
     animation-delay: 0s;
-    animation-iteration-count: 1;
-    animation-name: heropage_PortraitIn_3wy5B;
+    animation-iteration-count: 1; */
     align-items: flex-start;
     top: -3%;
 }
@@ -805,11 +803,10 @@ export default {
     flex-direction: column;
     position: relative;
     z-index: 2;
-    animation-duration: 1s;
+    /* animation-duration: 1s;
     animation-timing-function: ease-out;
     animation-delay: 0s;
-    animation-iteration-count: 1;
-    animation-name: heropage_heroInfoIn_2pSnE;
+    animation-iteration-count: 1; */
 }
 .heroTypeTitle{
     display: flex;
@@ -965,11 +962,10 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
-    animation-duration: 1s;
+    /* animation-duration: 1s;
     animation-timing-function: ease-out;
     animation-delay: 0s;
-    animation-iteration-count: 1;
-    animation-name: heropage_verticalBarIn_2Wsyr;
+    animation-iteration-count: 1; */
     transform: rotate(270deg);
     transform-origin: bottom left;
 }
@@ -1008,11 +1004,10 @@ export default {
     display: flex;
     flex-direction: column;
     z-index: 2;
-    animation-duration: 1s;
+    /* animation-duration: 1s;
     animation-timing-function: ease-out;
     animation-delay: 0s;
-    animation-iteration-count: 1;
-    animation-name: heropage_topAbilitiesIn_I2RNu;
+    animation-iteration-count: 1; */
 }
 .title{
     color: #fff;
@@ -1457,6 +1452,92 @@ export default {
     font-size: 60px;
     line-height: 62px;
     }
+}
+@media (max-width: 376px){
+.upperSection{
+    padding: 0;
+}
+.heroNavigator{
+    top: 63px;
+    right: 6px;
+}
+.PrimaryStat{
+    font-size: 14px;
+}
+.heroNameSmall{
+    font-size: 20px;
+}
+.heroOneLiner {
+    font-size: 8px;
+}
+.bioContainer{
+    height: 291px;
+    font-size: 10px;
+}
+.showBio{
+    font-size: 8px;
+}
+.heroLore{
+    font-size: 10px;
+}
+.heroTitle{
+    margin-top: 11px;
+    font-size: 11px;
+}
+.attackTypeDetail{
+    margin-top: 3px;
+}
+.attackTypeIcon{
+    width: 12px;
+    height: 12px;
+}
+.value{
+    font-size: 10px;
+}
+.pipContainer{
+    width: 52px;
+}
+.diamondPip{
+    width: 10px;
+    height: 10px;
+}
+.heroVerticalBar{
+    left: 41px;
+    bottom: 235px;
+}
+.heroBarName{
+    font-size: 11px;
+}
+.heroID{
+    font-size: 11px;
+}
+.topAbilitySelector{
+    right: 65px;
+    bottom: 98px;
+}
+.topAbilityContainer{
+    width: 40px;
+    height: 40px;
+}
+.abilitySelectableTalent{
+    width: 40px;
+    height: 40px;
+}
+.abilitySelectable{
+    width: 40px;
+    height: 40px;
+}
+.detailsBar{
+    height: 667px;
+    flex-direction: column;
+}
+.verticalSeparator{
+    height: 0;
+    flex-direction: column;
+}
+.detailsStats{
+    min-width: 360px;
+}
 }    
 
 </style>
