@@ -3,5 +3,6 @@ query MyQuery($_eq: Int) {
     id
     name
     image_url
+    attacktype_icon
   }
 }

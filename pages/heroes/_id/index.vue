@@ -125,23 +125,145 @@
                 <div class="title">Abilities</div>
                 <div class="abilityList">
                     <div class="topAbilityContainer">
-                        <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/talents.svg">
+                        <v-tooltip top>
+                            <template v-slot:activator="{on, attrs}">
+                                <img class="abilitySelectableTalent" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/talents.svg" v-bind="attrs" v-on="on"   >
+                            </template>
+                            <div
+                            v-for="(talent,talent_id) in talents"
+                            :key="talent_id"
+                            class="abilityTooltipTalent">
+                                <div class="tooltipBodyTalent">
+                                    <div class="talentContainer">
+                                        <div class="talentTitle">TALENT TREE</div>
+                                        <div class="talentRow">
+                                            <div class="talentEntry">{{talent.talent_entry1}}</div>
+                                            <div class="talentLevelContainer">
+                                                <div class="talentLevel">25</div>
+                                            </div>
+                                            <div class="talentEntry">{{talent.talent_entry2}}</div>
+                                        </div>
+                                        <div class="talentRow">
+                                            <div class="talentEntry">{{talent.talent_entry3}}</div>
+                                            <div class="talentLevelContainer">
+                                                <div class="talentLevel">20</div>
+                                            </div>
+                                            <div class="talentEntry">{{talent.talent_entry4}}</div>
+                                        </div>
+                                        <div class="talentRow">
+                                            <div class="talentEntry">{{talent.talent_entry5}}</div>
+                                            <div class="talentLevelContainer">
+                                                <div class="talentLevel">15</div>
+                                            </div>
+                                            <div class="talentEntry">{{talent.talent_entry6}}</div>
+                                        </div>
+                                        <div class="talentRow">
+                                            <div class="talentEntry">{{talent.talent_entry7}}</div>
+                                            <div class="talentLevelContainer">
+                                                <div class="talentLevel">10</div>
+                                            </div>
+                                            <div class="talentEntry">{{talent.talent_entry8}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </v-tooltip>
                     </div>
                     <div class="topAbilityContainer">
-                        <img :src="ability.skill_1_icon"
-                        class="abilitySelectable">
+                        <v-tooltip top>
+                            <template v-slot:activator="{on, attrs}">
+                                <img class="abilitySelectable" v-bind="attrs" :src="ability.skill_1_icon" v-on="on"   >
+                            </template>
+                            <div class="abilityTooltip">
+                                <div class="tooltipBody">
+                                    <div class="tooltipVideo">
+                                        <video class="tooltipVideoContent" autoplay preload="auto" loop muted playsinline poster="">
+                                            <source type="video/webm" :src="ability.skill_1_video">
+                                        </video>
+                                    </div>
+                                    <div class="tooltipDescription">
+                                        <div class="tooltipDescription_title">
+                                            {{ability.skill_1_name}}
+                                        </div>
+                                        <div class="tooltipDescription_ text">
+                                            {{ability.skill_1_text}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </v-tooltip>
                     </div>
                     <div class="topAbilityContainer">
-                        <img :src="ability.skill_2_icon"
-                        class="abilitySelectable">
+                        <v-tooltip top>
+                            <template v-slot:activator="{on, attrs}">
+                                <img class="abilitySelectable" v-bind="attrs" :src="ability.skill_2_icon" v-on="on"   >
+                            </template>
+                            <div class="abilityTooltip">
+                                <div class="tooltipBody">
+                                    <div class="tooltipVideo">
+                                        <video class="tooltipVideoContent" autoplay preload="auto" loop muted playsinline poster="">
+                                            <source type="video/webm" :src="ability.skill_2_video">
+                                        </video>
+                                    </div>
+                                    <div class="tooltipDescription">
+                                        <div class="tooltipDescription_title">
+                                            {{ability.skill_2_name}}
+                                        </div>
+                                        <div class="tooltipDescription_ text">
+                                            {{ability.skill_2_text}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </v-tooltip>
                     </div>
                     <div class="topAbilityContainer">
-                        <img :src="ability.skill_3_icon"
-                        class="abilitySelectable">
+                        <v-tooltip top>
+                            <template v-slot:activator="{on, attrs}">
+                                <img class="abilitySelectable" v-bind="attrs" :src="ability.skill_3_icon" v-on="on"   >
+                            </template>
+                            <div class="abilityTooltip">
+                                <div class="tooltipBody">
+                                    <div class="tooltipVideo">
+                                        <video class="tooltipVideoContent" autoplay preload="auto" loop muted playsinline poster="">
+                                            <source type="video/webm" :src="ability.skill_3_video">
+                                        </video>
+                                    </div>
+                                    <div class="tooltipDescription">
+                                        <div class="tooltipDescription_title">
+                                            {{ability.skill_3_name}}
+                                        </div>
+                                        <div class="tooltipDescription_ text">
+                                            {{ability.skill_3_text}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </v-tooltip>
                     </div>
                     <div class="topAbilityContainer">
-                        <img :src="ability.skill_4_icon"
-                        class="abilitySelectable">
+                        <v-tooltip top>
+                            <template v-slot:activator="{on, attrs}">
+                                <img class="abilitySelectable" v-bind="attrs" :src="ability.skill_4_icon" v-on="on"   >
+                            </template>
+                            <div class="abilityTooltip">
+                                <div class="tooltipBody">
+                                    <div class="tooltipVideo">
+                                        <video class="tooltipVideoContent" autoplay preload="auto" loop muted playsinline poster="">
+                                            <source type="video/webm" :src="ability.skill_4_video">
+                                        </video>
+                                    </div>
+                                    <div class="tooltipDescription">
+                                        <div class="tooltipDescription_title">
+                                            {{ability.skill_4_name}}
+                                        </div>
+                                        <div class="tooltipDescription_ text">
+                                            {{ability.skill_4_text}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </v-tooltip>
                     </div>
                 </div>
             </div>
@@ -537,6 +659,17 @@ export default {
             update(data){
                 return data.abilities
             }
+        },
+        talents: {
+            query: heroesByID,
+            variables(){
+                return {
+                    id: this.heroID
+                }
+            },
+            update(data){
+                return data.talent_tree
+            }
         }
     },
 }
@@ -912,6 +1045,32 @@ export default {
     cursor: pointer;
     box-shadow: 0px 0px 20px #000, 0px 0px 20px #000;
     position: relative;
+    transition-property: transform,box-shadow,background-size,opacity,top,left;
+    transition-timing-function: ease-out;
+    transition-duration: .3s;
+}
+.abilitySelectable:hover{
+    transform: scale(1.4);
+    box-shadow: 3px 3px 8px #000;
+    background-size: 100%;
+    filter: saturate(1);
+    z-index: 4;
+}
+.abilitySelectableTalent{
+    width: 80px;
+    height: 80px;
+    margin: 0px 6px;
+    cursor: pointer;
+    position: relative;
+    transition-property: transform,box-shadow,background-size,opacity,top,left;
+    transition-timing-function: ease-out;
+    transition-duration: .3s;
+}
+.abilitySelectableTalent:hover{
+    transform: scale(1.4);
+    background-size: 100%;
+    filter: saturate(1);
+    z-index: 4;
 }
 .detailBarContainer{
     width: 100%;
@@ -1159,6 +1318,139 @@ export default {
     width: 24px;
     height: 24px;
     margin-right: 8px;
+}
+.abilityTooltip{
+    width: 300px;
+    left: -35px;
+    top: 50px;
+    right: auto;
+    position: absolute;
+    transform: translateY(-100%) translateY(-84px) translateX(-100px);
+    display: block;
+    filter: drop-shadow(2px 2px 8px black);
+}
+.abilityTooltipTalent{
+    width: 300px;
+    left: -35px;
+    top: 50px;
+    right: auto;
+    position: absolute;
+    transform: translateY(-100%) translateY(-84px) translateX(-200px);
+    display: block;
+    filter: drop-shadow(2px 2px 8px black);
+    
+}
+.tooltipBody{
+    width: 300px;
+    background-color: #000;
+    clip-path: polygon(0px 0px, 0px calc(100% - 20px), calc(50% - 20px) calc(100% - 20px), 50% 100%, calc(50% + 20px) calc(100% - 20px), 100% calc(100% - 20px), 100% 0px);
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.tooltipBodyTalent{
+    width: 500px;
+    background-color: #000;
+    clip-path: polygon(0px 0px, 0px calc(100% - 20px), calc(50% - 20px) calc(100% - 20px), 50% 100%, calc(50% + 20px) calc(100% - 20px), 100% calc(100% - 20px), 100% 0px);
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.talentTitle{
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    text-shadow: 0px 0px 5px #000;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+}
+.talentContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: linear-gradient(150deg, #68727C, #14171A);
+    padding: 20px;
+    padding-bottom: 40px;
+}
+.talentRow{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 0px 18px;
+    background: linear-gradient(150deg, #3c4247, #0a0c0e);
+}
+.talentEntry{
+    flex-grow: 1;
+    flex-basis: 1px;
+    font-family: "Radiance",sans-serif;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 400;
+    font-size: 13px;
+    color: #ffffffbb;
+}
+.talentLevelContainer{
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(325deg, #3c4247, #0a0c0e);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.talentLevel{
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 50%;
+    background: #222;
+    font-size: 20px;
+    font-family: "Radiance",sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #e7d292;
+    text-shadow: 0px 0px 8px #ff531c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.tooltipVideo{
+    width: 300px;
+    height: 169px;
+}
+.tooltipDescription{
+    width: 300px;
+    background: linear-gradient(150deg, #68727C, #14171A);
+    padding: 10px 15px;
+    padding-bottom: 35px;
+}
+.tooltipVideoContent{
+    width: 100%;
+    height: 100%;
+}
+.tooltipDescription_title{
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.tooltipDescription_text{
+    color: #ddd;
+    margin-top: 3px;
+    font-size: 17px;
+    letter-spacing: 0px;
 }
 @media (max-width: 1600px){
     .heroName{

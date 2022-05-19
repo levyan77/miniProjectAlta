@@ -8,7 +8,7 @@
   </div>
 
   <div class="heroFilter">
-    <div class="filterLabel">search mode : {{filterSearch}}</div>
+    <div class="filterLabel">FILTER HEROES</div>
     <div class="spesificFilterContainer">
         <div class="selectorLabel">Attribute</div>
         <div id="str" class="filterIcon" :style="{backgroundImage: `url(${filterIconStr})`, filter: `brightness(${buttonBrightnessStr}) saturate(${buttonSaturateStr})`}" @click="setFilterStr(); setButtonFilterStr();"></div>
@@ -23,9 +23,9 @@
     </div>
     <div class="searchBarContainer">
       <div class="searchBar">
-          <div class="iconSearch" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/search.svg);"></div>
+          <div class="iconSearch" :style="{backgroundImage: `url(${searchIcon})`, filter: `brightness(${searchIconBrightness})`}"></div>
           <div class="form">
-            <input v-model="searchKey" class="input" type="text" @keyup.enter="setSearchKey(searchKey)" >
+            <input v-model="searchKey" class="input" type="text" @keyup.enter="setSearchKey(searchKey); setIconSearchFIlter() " >
           </div>
       </div>
     </div>
@@ -35,12 +35,17 @@
   <a
     v-for="(hero,i) in heroes"
     :key="i"
-    class="heroIcon" :href="link+hero.id" :style="`background-image: url(${hero.image_url})`"
+    class="heroIcon" :href="link+hero.id" :style="{backgroundImage: `url(${hero.image_url})`}"
     >
       <div class="heroNameContainer">
-        <img :src="hero.image_url" class="PrimaryStatIcon">
+        <img :src="hero.attacktype_icon" class="PrimaryStatIcon">
         <div class="heroName">
           {{hero.name}}
+        </div>
+      </div>
+      <div class="fadeContainer">
+        <div class="fadebottom">
+          <div class="fade1keus"></div>
         </div>
       </div>
     
@@ -222,6 +227,12 @@ export default {
         update(data){
           return data.heroes_general
         }
+    },
+    attributes:{
+            query: heroesQuery,
+            update(data){
+                return data.attribute
+            }
     }
     },
   data(){
@@ -238,6 +249,7 @@ export default {
       buttonSaturateAgi: 0,
       buttonBrightnessInt: 0.5,
       buttonSaturateInt: 0,
+      searchIconBrightness: 1,
       searchKey: "",
       filterSearch: false,
       filterComplex1: false,
@@ -251,6 +263,7 @@ export default {
       filterIconStr: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-str-active.png",
       filterIconAgi: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-agi-active.png",
       filterIconInt: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-int-active.png",
+      searchIcon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/search.svg",
     }
   },
   computed:{
@@ -292,6 +305,13 @@ export default {
     setSearchKey(param){
       this.filterSearch = !this.filterSearch;
       this.searchKey = param;
+    },
+    setIconSearchFIlter(){
+      this.searchIconBrightness = 10;
+      if(this.filterSearch === false){
+        this.searchIconBrightness = 1;
+      }
+      return this.searchIconBrightness
     },
     setButtonFilterStr(){
       this.buttonBrightnessStr = 1;
@@ -515,6 +535,21 @@ export default {
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    transition-property: transform,box-shadow,background-size,opacity,top,left;
+    transition-timing-function: ease-out;
+    transition-duration: .3s;
+    background-position: center;
+}
+.heroIcon:hover{
+    transform: scale(1.4);
+    box-shadow: 3px 3px 8px #000;
+    background-size: 100%;
+    filter: saturate(1);
+    z-index: 4;
+}
+.heroIcon:hover > .heroNameContainer{
+  bottom: -5px;
+  opacity: 100;
 }
 .heroNameContainer{
   width: 100%;
@@ -527,6 +562,9 @@ export default {
   align-items: center;
   z-index: 3;
   opacity: 0;
+  transition-property: opacity,bottom;
+  transition-timing-function: ease-out;
+  transition-duration: .2s;
 }
 .PrimaryStatIcon{
     width: 42px;
@@ -554,6 +592,12 @@ export default {
     transition-timing-function: ease-out;
     transition-duration: .2s;
     opacity: 0;
+    z-index: 1;
+}
+.heroIcon:hover > .fadeContainer{
+    opacity: 100;
+    background-color: #000;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 5%, black 95%);
 }
 .fadeBottom{
     left: 0px;

@@ -58,7 +58,7 @@
         </div>
         <div class="homepageHorizbar"></div>
         <div class="BodyText">Every day, millions of players worldwide enter the battle as one of over a hundred Dota Heroes in a 5v5 team clash.  Dota is the deepest multi-player action RTS game ever made and there's always a new strategy or tactic to discover.  It's completely free to play and always will be – start defending your ancient now.</div>
-        <a href="/newsPage">
+        <a class="standartButtonContainer" href="/newsPage">
           <div class="standartButton">
             <div class="buttonText">See What's New</div>
           </div>
@@ -382,6 +382,12 @@ export default {
     letter-spacing: 2px;
     line-height: 105%;
 }
+@media (max-width: 576px) {
+  .headerText{
+    font-weight: 700;
+    font-size: 40px;
+  }  
+}
 
 .homePage .chooseSection .headerText{
     margin-top: 900px;
@@ -412,6 +418,14 @@ export default {
   font-weight: 100;
   text-align: justify;
 }
+@media (max-width: 576px){
+  .BodyText{
+    z-index: 1;
+    font-size: 16px;
+    text-align: justify;
+    filter: brightness(100);
+  }
+}
 .standartButton{
     border: 3px solid #ffffff50;
     padding: 15px 25px;
@@ -427,6 +441,14 @@ export default {
 }
 .standartButton:hover {
   border: 3px solid #ff6046;
+}
+.standartButtonContainer{
+  z-index: auto;
+}
+@media (max-width: 576px){
+  .standartButtonContainer{
+    z-index: 1;
+  }
 }
 .buttonText{
     font-size: 20px;
@@ -527,6 +549,11 @@ export default {
 
   .battleImgMobile{
     display: block;
+  }
+}
+@media (max-width: 576px){
+  .QuoteText{
+    font-size: 28px;
   }
 }
 </style>

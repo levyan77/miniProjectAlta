@@ -15,6 +15,7 @@
             </div>
         </div>
     </a>
+
 </template>
 
 <script>
@@ -103,4 +104,7 @@ export default {
     margin-bottom: 8px;
     z-index: 2;
 }
+/* @media (max-width: 576px){
+
+} */
 </style>

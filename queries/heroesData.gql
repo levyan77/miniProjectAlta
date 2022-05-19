@@ -6,6 +6,7 @@ query MyQuery {
     quotes
     summary
     video_url
+    attacktype_icon
   }
   attribute {
     icon_url

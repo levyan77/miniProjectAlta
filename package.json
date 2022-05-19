@@ -45,6 +45,7 @@
     "jest": "^27.4.4",
     "prettier": "^2.5.1",
     "vue-jest": "^3.0.4",
-    "vue-mixins": "^0.3.6"
+    "vue-mixins": "^0.3.6",
+    "webpack": "^4.46.0"
   }
 }

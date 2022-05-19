@@ -129,4 +129,14 @@ export default {
     opacity: .9;
     margin-left: 5px;
 }
+@media (max-width: 576px){
+    .DotaLogo{
+    width: 100px;
+    min-width: 100px;
+    }
+    .NavLink{
+        font-size: 12px;
+        margin: 0px 5px;
+    }
+}
 </style>
