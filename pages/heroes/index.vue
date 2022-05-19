@@ -11,15 +11,15 @@
     <div class="filterLabel">search mode : {{filterSearch}}</div>
     <div class="spesificFilterContainer">
         <div class="selectorLabel">Attribute</div>
-        <div id="str" class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-str-active.png);" @click="setFilterStr"></div>
-        <div id="agi" class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-agi-active.png);" @click="setFilterAgi"></div>
-        <div id="int" class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-int-active.png);" @click="setFilterInt"></div>
+        <div id="str" class="filterIcon" :style="{backgroundImage: `url(${filterIconStr})`, filter: `brightness(${buttonBrightnessStr}) saturate(${buttonSaturateStr})`}" @click="setFilterStr(); setButtonFilterStr();"></div>
+        <div id="agi" class="filterIcon" :style="{backgroundImage: `url(${filterIconAgi})`, filter: `brightness(${buttonBrightnessAgi}) saturate(${buttonSaturateAgi})`}" @click="setFilterAgi(); setButtonFilterAgi();"></div>
+        <div id="int" class="filterIcon" :style="{backgroundImage: `url(${filterIconInt})`, filter: `brightness(${buttonBrightnessInt}) saturate(${buttonSaturateInt})`}" @click="setFilterInt(); setButtonFilterInt();"></div>
     </div>
     <div class="spesificFilterContainer">
         <div class="selectorLabel">Complexity</div>
-        <div class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-diamond.png);" @click="setFilterComplex1"></div>
-        <div class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-diamond.png);" @click="setFilterComplex2"></div>
-        <div class="filterIcon" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-diamond.png);" @click="setFilterComplex3"></div>
+        <div class="filterIcon" :style="{backgroundImage: `url(${filterIconComplexity})`, filter: `brightness(${buttonBrightnessComplex1}) saturate(${buttonSaturateComplex1})`}" @click="setFilterComplex1(); setButtonFilterComplex1();"></div>
+        <div class="filterIcon" :style="{backgroundImage: `url(${filterIconComplexity})`, filter: `brightness(${buttonBrightnessComplex2}) saturate(${buttonSaturateComplex2})`}" @click="setFilterComplex2(); setButtonFilterComplex2();"></div>
+        <div class="filterIcon" :style="{backgroundImage: `url(${filterIconComplexity})`, filter: `brightness(${buttonBrightnessComplex3}) saturate(${buttonSaturateComplex3})`}" @click="setFilterComplex3(); setButtonFilterComplex3();"></div>
     </div>
     <div class="searchBarContainer">
       <div class="searchBar">
@@ -222,23 +222,22 @@ export default {
         update(data){
           return data.heroes_general
         }
-
-        // heroes: {
-        //     query: heroesQuery,
-        //     update(data){
-        //         return data.heroes_general
-        //     }            
-        // },
-        // attribute: {
-        //     query: heroesQuery,
-        //     update(data){
-        //         return data.attribute
-        //     }            
-        // }
     }
     },
   data(){
     return{
+      buttonBrightnessComplex1: 0.5,
+      buttonSaturateComplex1: 0,
+      buttonBrightnessComplex2: 0.5,
+      buttonSaturateComplex2: 0,
+      buttonBrightnessComplex3: 0.5,
+      buttonSaturateComplex3: 0,
+      buttonBrightnessStr: 0.5,
+      buttonSaturateStr: 0,
+      buttonBrightnessAgi: 0.5,
+      buttonSaturateAgi: 0,
+      buttonBrightnessInt: 0.5,
+      buttonSaturateInt: 0,
       searchKey: "",
       filterSearch: false,
       filterComplex1: false,
@@ -248,29 +247,15 @@ export default {
       filterAgi: false,
       filterInt: false,
       link: "/heroes/",
-      // items: [
-      //           {
-      //               icon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/abaddon.png",
-      //               name: "Abaddon",
-      //               attribute: "str",
-      //               attributeIcon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_strength.png",
-      //               to: "/abaddon",
-      //           },
-      //           {
-      //               icon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/alchemist.png",
-      //               name: "Alchemist",
-      //               attribute: "agi",
-      //               attributeIcon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_agility.png",
-      //               to: "/alchemist",
-      //           },
-      //           {
-      //               icon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/ancient_apparition.png",
-      //               name: "Ancient Apparition",
-      //               attribute: "int",
-      //               attributeIcon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_intelligence.png",
-      //               to: "/alchemist",
-      //           },
-      //       ],
+      filterIconComplexity: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-diamond.png",
+      filterIconStr: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-str-active.png",
+      filterIconAgi: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-agi-active.png",
+      filterIconInt: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-int-active.png",
+    }
+  },
+  computed:{
+   computedButtonFilter(){
+     return [this.buttonBrightness, this.buttonSaturate]
     }
   },
   methods:{
@@ -307,7 +292,75 @@ export default {
     setSearchKey(param){
       this.filterSearch = !this.filterSearch;
       this.searchKey = param;
-    }
+    },
+    setButtonFilterStr(){
+      this.buttonBrightnessStr = 1;
+      this.buttonSaturateStr = 1;
+      if(this.filterStr === false){
+      this.buttonBrightnessStr = 0.5;
+      this.buttonSaturateStr = 0;
+      }
+      return [this.buttonBrightness, this.buttonSaturate]
+    },
+    setButtonFilterAgi(){
+      this.buttonBrightnessAgi = 1;
+      this.buttonSaturateAgi = 1;
+      if(this.filterAgi === false){
+      this.buttonBrightnessAgi = 0.5;
+      this.buttonSaturateAgi = 0;
+      }
+      return [this.buttonBrightness, this.buttonSaturate]
+    },
+    setButtonFilterInt(){
+      this.buttonBrightnessInt = 1;
+      this.buttonSaturateInt = 1;
+      if(this.filterInt === false){
+      this.buttonBrightnessInt = 0.5;
+      this.buttonSaturateInt = 0;
+      }
+      return [this.buttonBrightness, this.buttonSaturate]
+    },
+    setButtonFilterComplex1(){
+      this.buttonBrightnessComplex1 = 1;
+      this.buttonSaturateComplex1 = 1;
+      if(this.filterComplex1 === false){
+      this.buttonBrightnessComplex1 = 0.5;
+      this.buttonSaturateComplex1 = 0;
+      }
+      return [this.buttonBrightness, this.buttonSaturate]
+    },
+    setButtonFilterComplex2(){
+      this.buttonBrightnessComplex1 = 1;
+      this.buttonSaturateComplex1 = 1;
+      this.buttonBrightnessComplex2 = 1;
+      this.buttonSaturateComplex2 = 1;
+      if(this.filterComplex2 === false){
+      this.buttonBrightnessComplex1 = 0.5;
+      this.buttonSaturateComplex1 = 0;
+      this.buttonBrightnessComplex2 = 0.5;
+      this.buttonSaturateComplex2 = 0;
+      }
+      return [this.buttonBrightness, this.buttonSaturate]
+    },
+    setButtonFilterComplex3(){
+      this.buttonBrightnessComplex1 = 1;
+      this.buttonSaturateComplex1 = 1;
+      this.buttonBrightnessComplex2 = 1;
+      this.buttonSaturateComplex2 = 1;
+      this.buttonBrightnessComplex3 = 1;
+      this.buttonSaturateComplex3 = 1;
+      if(this.filterComplex3 === false){
+      this.buttonBrightnessComplex1 = 0.5;
+      this.buttonSaturateComplex1 = 0;
+      this.buttonBrightnessComplex2 = 0.5;
+      this.buttonSaturateComplex2 = 0;
+      this.buttonBrightnessComplex3 = 0.5;
+      this.buttonSaturateComplex3 = 0;
+      }
+      return [this.buttonBrightness, this.buttonSaturate]
+    },
+
+
   }
 }
 </script>

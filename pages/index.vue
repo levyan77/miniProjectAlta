@@ -34,7 +34,7 @@
     <div class="newsSection">
       <div class="newsTop">
         <div class="latest">Latest News</div>
-        <a class="viewAll" href="/news">View All
+        <a class="viewAll" href="/newsPage">View All
           <div class="rightArrow" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//arrow_left.png);"></div>
         </a>
       </div>
@@ -58,7 +58,7 @@
         </div>
         <div class="homepageHorizbar"></div>
         <div class="BodyText">Every day, millions of players worldwide enter the battle as one of over a hundred Dota Heroes in a 5v5 team clash.  Dota is the deepest multi-player action RTS game ever made and there's always a new strategy or tactic to discover.  It's completely free to play and always will be – start defending your ancient now.</div>
-        <a href="/news">
+        <a href="/newsPage">
           <div class="standartButton">
             <div class="buttonText">See What's New</div>
           </div>

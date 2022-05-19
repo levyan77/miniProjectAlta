@@ -458,7 +458,7 @@ export default {
       setID(){
           this.heroIDnumber = 1
           return this.heroIDnumber
-      }
+      },
     },
     apollo: {
         heroes: {
