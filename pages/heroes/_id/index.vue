@@ -686,7 +686,7 @@ export default {
 }
 .upperSection{
     width: 100%;
-    height: 85vh;
+    height: 123vh;
     min-height: 700px;
     padding: 40px 100px 0px 140px;
     background-position-x: -20vw;
@@ -1464,6 +1464,7 @@ export default {
 @media (max-width: 376px){
 .upperSection{
     padding: 0;
+    height: 83vh;
 }
 .heroNavigator{
     top: 63px;
