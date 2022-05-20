@@ -1,0 +1,26 @@
+query MyQuery {
+  Spesifikasi {
+    Operating_System
+    Processor
+    Graphics
+    Display
+    Memory
+    Camera
+    Storage
+    Network_and_Communication
+    Battery
+    Power_Supply
+    Weight
+    Dimension
+    Microsoft_Office
+    Security
+    Note
+    img
+    details {
+      audio
+      in_box
+      inputOutput
+      keyboard_touchpad
+    }
+  }
+}

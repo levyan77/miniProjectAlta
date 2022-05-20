@@ -1,0 +1,14 @@
+query MyQuery {
+  heroes_general {
+    id
+    image_url
+    name
+    quotes
+    summary
+    video_url
+    attacktype_icon
+  }
+  attribute {
+    icon_url
+  }
+}

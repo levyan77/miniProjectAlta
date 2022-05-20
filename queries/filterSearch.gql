@@ -1,0 +1,8 @@
+query MyQuery($_eq: String = "") {
+  heroes_general(where: {key_search: {_eq: $_eq}}) {
+    id
+    name
+    image_url
+    attacktype_icon
+  }
+}
