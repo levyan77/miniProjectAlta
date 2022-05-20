@@ -578,7 +578,7 @@ export default {
           return [this.opacity,this.hidden,this.zIndex1, this.zIndex2]
       },
       setID(){
-          this.heroIDnumber = 1
+          this.heroIDnumber = 3
           return this.heroIDnumber
       },
     },
@@ -686,7 +686,7 @@ export default {
 }
 .upperSection{
     width: 100%;
-    height: 85vh;
+    height: 123vh;
     min-height: 700px;
     padding: 40px 100px 0px 140px;
     background-position-x: -20vw;
@@ -735,6 +735,9 @@ export default {
     opacity: .4;
     cursor: pointer;
 }
+.ArrowLeftnav:hover{
+    opacity: 1;
+}
 .CenterGrid{
     width: 80px;
     height: 64px;
@@ -751,6 +754,9 @@ export default {
     opacity: .4;
     cursor: pointer;
 }
+.CenterGrid:hover{
+    opacity: 1;
+}
 .ArrowRightnav{
     width: 30px;
     height: 64px;
@@ -764,6 +770,9 @@ export default {
     transition-duration: .1s;
     opacity: .4;
     cursor: pointer;
+}
+.ArrowRightnav:hover{
+    opacity: 1;
 }
 .gridDot{
     width: 16px;
@@ -1333,7 +1342,6 @@ export default {
     transform: translateY(-100%) translateY(-84px) translateX(-200px);
     display: block;
     filter: drop-shadow(2px 2px 8px black);
-    
 }
 .tooltipBody{
     width: 300px;
@@ -1456,6 +1464,7 @@ export default {
 @media (max-width: 376px){
 .upperSection{
     padding: 0;
+    height: 83vh;
 }
 .heroNavigator{
     top: 63px;
@@ -1537,6 +1546,16 @@ export default {
 }
 .detailsStats{
     min-width: 360px;
+}
+.tooltipBodyTalent{
+    width: 400px;
+}
+.abilityTooltipTalent{
+    transform: translateY(-100%) translateY(-84px) translateX(-50px);    
+}
+.abilityTooltip{
+    transform: translateY(-100%) translateY(-84px) translateX(-50px);
+    left: -70px;
 }
 }    
 
