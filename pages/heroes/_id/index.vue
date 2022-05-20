@@ -1333,7 +1333,6 @@ export default {
     transform: translateY(-100%) translateY(-84px) translateX(-200px);
     display: block;
     filter: drop-shadow(2px 2px 8px black);
-    
 }
 .tooltipBody{
     width: 300px;
@@ -1537,6 +1536,16 @@ export default {
 }
 .detailsStats{
     min-width: 360px;
+}
+.tooltipBodyTalent{
+    width: 400px;
+}
+.abilityTooltipTalent{
+    transform: translateY(-100%) translateY(-84px) translateX(-50px);    
+}
+.abilityTooltip{
+    transform: translateY(-100%) translateY(-84px) translateX(-50px);
+    left: -70px;
 }
 }    
 

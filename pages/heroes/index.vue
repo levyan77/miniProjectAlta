@@ -276,38 +276,86 @@ export default {
       this.filterStr = !this.filterStr
       this.filterAgi = false
       this.filterInt = false
+      this.filterComplex1 = false
+      this.filterComplex2 = false
+      this.filterComplex3 = false
+      this.filterSearch = false
+      this.searchKey = ""
     },
     setFilterAgi(){
       this.filterStr = false
       this.filterAgi = !this.filterAgi
       this.filterInt = false
+      this.filterComplex1 = false
+      this.filterComplex2 = false
+      this.filterComplex3 = false
+      this.filterSearch = false
+      this.searchKey = ""
     },
     setFilterInt(){
       this.filterStr = false
       this.filterAgi = false
       this.filterInt = !this.filterInt
+      this.filterComplex1 = false
+      this.filterComplex2 = false
+      this.filterComplex3 = false
+      this.filterSearch = false
+      this.searchKey = ""
     },
     setFilterComplex1(){
       this.filterComplex1 = !this.filterComplex1
       this.filterComplex2 = false
       this.filterComplex3 = false
+      this.filterStr = false
+      this.filterAgi = false
+      this.filterInt = false
+      this.filterSearch = false
+      this.searchKey = ""
     },
     setFilterComplex2(){
       this.filterComplex1 = false
       this.filterComplex2 = !this.filterComplex2
       this.filterComplex3 = false
+      this.filterStr = false
+      this.filterAgi = false
+      this.filterInt = false
+      this.filterSearch = false
+      this.searchKey = ""
     },
     setFilterComplex3(){
       this.filterComplex1 = false
       this.filterComplex2 = false
       this.filterComplex3 = !this.filterComplex3
+      this.filterStr = false
+      this.filterAgi = false
+      this.filterInt = false
+      this.filterSearch = false
+      this.searchKey = ""
     },
     setSearchKey(param){
       this.filterSearch = !this.filterSearch;
+      this.filterComplex1 = false
+      this.filterComplex2 = false
+      this.filterComplex3 = false
+      this.filterStr = false
+      this.filterAgi = false
+      this.filterInt = false
       this.searchKey = param;
     },
     setIconSearchFIlter(){
       this.searchIconBrightness = 10;
+      this.buttonBrightnessStr = 0.5;
+      this.buttonSaturateStr = 0.5;
+      this.buttonBrightnessAgi = 0.5;
+      this.buttonSaturateAgi = 0;
+      this.buttonBrightnessInt = 0.5;
+      this.buttonSaturateInt = 0;
+      this.buttonBrightnessComplex1 = 0.5;
+      this.buttonSaturateComplex1 = 0;
+      this.buttonBrightnessComplex2 = 0.5;
+      this.buttonSaturateComplex2 = 0;
+      this.buttonBrightnessComplex3 = 0.5;
+      this.buttonSaturateComplex3 = 0;
       if(this.filterSearch === false){
         this.searchIconBrightness = 1;
       }
@@ -316,51 +364,104 @@ export default {
     setButtonFilterStr(){
       this.buttonBrightnessStr = 1;
       this.buttonSaturateStr = 1;
+      this.buttonBrightnessAgi = 0.5;
+      this.buttonSaturateAgi = 0;
+      this.buttonBrightnessInt = 0.5;
+      this.buttonSaturateInt = 0;
+      this.buttonBrightnessComplex1 = 0.5;
+      this.buttonSaturateComplex1 = 0;
+      this.buttonBrightnessComplex2 = 0.5;
+      this.buttonSaturateComplex2 = 0;
+      this.buttonBrightnessComplex3 = 0.5;
+      this.buttonSaturateComplex3 = 0;
+      this.searchIconBrightness = 1;
       if(this.filterStr === false){
       this.buttonBrightnessStr = 0.5;
       this.buttonSaturateStr = 0;
       }
-      return [this.buttonBrightness, this.buttonSaturate]
+      return [this.buttonBrightnessStr, this.buttonSaturateStr]
     },
     setButtonFilterAgi(){
       this.buttonBrightnessAgi = 1;
       this.buttonSaturateAgi = 1;
+      this.buttonBrightnessStr = 0.5;
+      this.buttonSaturateStr = 0;
+      this.buttonBrightnessInt = 0.5;
+      this.buttonSaturateInt = 0;
+      this.buttonBrightnessComplex1 = 0.5;
+      this.buttonSaturateComplex1 = 0;
+      this.buttonBrightnessComplex2 = 0.5;
+      this.buttonSaturateComplex2 = 0;
+      this.buttonBrightnessComplex3 = 0.5;
+      this.buttonSaturateComplex3 = 0;
+      this.searchIconBrightness = 1;
       if(this.filterAgi === false){
       this.buttonBrightnessAgi = 0.5;
       this.buttonSaturateAgi = 0;
       }
-      return [this.buttonBrightness, this.buttonSaturate]
+      return [this.buttonBrightnessAgi, this.buttonSaturateAgi]
     },
     setButtonFilterInt(){
       this.buttonBrightnessInt = 1;
       this.buttonSaturateInt = 1;
+      this.buttonBrightnessStr = 0.5;
+      this.buttonSaturateStr = 0;
+      this.buttonBrightnessAgi = 0.5;
+      this.buttonSaturateAgi = 0;
+      this.buttonBrightnessComplex1 = 0.5;
+      this.buttonSaturateComplex1 = 0;
+      this.buttonBrightnessComplex2 = 0.5;
+      this.buttonSaturateComplex2 = 0;
+      this.buttonBrightnessComplex3 = 0.5;
+      this.buttonSaturateComplex3 = 0;
+      this.searchIconBrightness = 1;
       if(this.filterInt === false){
       this.buttonBrightnessInt = 0.5;
       this.buttonSaturateInt = 0;
       }
-      return [this.buttonBrightness, this.buttonSaturate]
+      return [this.buttonBrightnessInt, this.buttonSaturateInt]
     },
     setButtonFilterComplex1(){
       this.buttonBrightnessComplex1 = 1;
       this.buttonSaturateComplex1 = 1;
+      this.buttonBrightnessComplex2 = 0.5;
+      this.buttonSaturateComplex2 = 0;
+      this.buttonBrightnessComplex3 = 0.5;
+      this.buttonSaturateComplex3 = 0;
+      this.buttonBrightnessStr = 0.5;
+      this.buttonSaturateStr = 0.5;
+      this.buttonBrightnessAgi = 0.5;
+      this.buttonSaturateAgi = 0;
+      this.buttonBrightnessInt = 0.5;
+      this.buttonSaturateInt = 0;
+      this.searchIconBrightness = 1;
       if(this.filterComplex1 === false){
       this.buttonBrightnessComplex1 = 0.5;
       this.buttonSaturateComplex1 = 0;
       }
-      return [this.buttonBrightness, this.buttonSaturate]
+      return [this.buttonBrightnessComplex1, this.buttonSaturateComplex1]
     },
     setButtonFilterComplex2(){
       this.buttonBrightnessComplex1 = 1;
       this.buttonSaturateComplex1 = 1;
       this.buttonBrightnessComplex2 = 1;
       this.buttonSaturateComplex2 = 1;
+      this.buttonBrightnessComplex3 = 0.5;
+      this.buttonSaturateComplex3 = 0;
+      this.buttonBrightnessStr = 0.5;
+      this.buttonSaturateStr = 0.5;
+      this.buttonBrightnessAgi = 0.5;
+      this.buttonSaturateAgi = 0;
+      this.buttonBrightnessInt = 0.5;
+      this.buttonSaturateInt = 0;
+      this.searchIconBrightness = 1;
       if(this.filterComplex2 === false){
       this.buttonBrightnessComplex1 = 0.5;
       this.buttonSaturateComplex1 = 0;
       this.buttonBrightnessComplex2 = 0.5;
       this.buttonSaturateComplex2 = 0;
       }
-      return [this.buttonBrightness, this.buttonSaturate]
+      return [this.buttonBrightnessComplex1, this.buttonSaturateComplex1, this.buttonBrightnessComplex2, this.buttonSaturateComplex2]
     },
     setButtonFilterComplex3(){
       this.buttonBrightnessComplex1 = 1;
@@ -369,6 +470,13 @@ export default {
       this.buttonSaturateComplex2 = 1;
       this.buttonBrightnessComplex3 = 1;
       this.buttonSaturateComplex3 = 1;
+      this.buttonBrightnessStr = 0.5;
+      this.buttonSaturateStr = 0.5;
+      this.buttonBrightnessAgi = 0.5;
+      this.buttonSaturateAgi = 0;
+      this.buttonBrightnessInt = 0.5;
+      this.buttonSaturateInt = 0;
+      this.searchIconBrightness = 1;
       if(this.filterComplex3 === false){
       this.buttonBrightnessComplex1 = 0.5;
       this.buttonSaturateComplex1 = 0;
@@ -377,7 +485,7 @@ export default {
       this.buttonBrightnessComplex3 = 0.5;
       this.buttonSaturateComplex3 = 0;
       }
-      return [this.buttonBrightness, this.buttonSaturate]
+      return [this.buttonBrightnessComplex1, this.buttonSaturateComplex1, this.buttonBrightnessComplex2, this.buttonSaturateComplex2, this.buttonBrightnessComplex3, this.buttonSaturateComplex3 ]
     },
 
 
@@ -618,7 +726,7 @@ export default {
       font-size: 11px;
     }
     .heroFilter{
-      width: 750px;
+      width: 375px;
       flex-direction: column;
     }
     .filterLabel{
@@ -648,6 +756,14 @@ export default {
     }
     .gridList{
       width: 338px;
+    }
+    .PrimaryStatIcon{
+    width: 25px;
+    height: 25px;
+    }
+    .heroName{
+    font-size: 8px;
+    line-height: 8px;
     }
   }
 /* .grid-container {
