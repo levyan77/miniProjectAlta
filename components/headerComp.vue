@@ -5,7 +5,7 @@
             <div class="NavItems">
                 <a class="NavLink" href="/" >Game</a>
                 <a class="NavLink" href="/heroes">Heroes</a>
-                <a class="NavLink" href="/newsPage">News</a>
+                <a class="NavLink" href="https://www.dota2.com/news">News</a>
             </div>
             <div class="optionsSide">
                 <div class="languageSelector"></div>

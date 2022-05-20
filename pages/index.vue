@@ -34,7 +34,7 @@
     <div class="newsSection">
       <div class="newsTop">
         <div class="latest">Latest News</div>
-        <a class="viewAll" href="/newsPage">View All
+        <a class="viewAll" href="https://www.dota2.com/news">View All
           <div class="rightArrow" style="background-image: url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//arrow_left.png);"></div>
         </a>
       </div>
@@ -58,7 +58,7 @@
         </div>
         <div class="homepageHorizbar"></div>
         <div class="BodyText">Every day, millions of players worldwide enter the battle as one of over a hundred Dota Heroes in a 5v5 team clash.  Dota is the deepest multi-player action RTS game ever made and there's always a new strategy or tactic to discover.  It's completely free to play and always will be – start defending your ancient now.</div>
-        <a class="standartButtonContainer" href="/newsPage">
+        <a class="standartButtonContainer" href="https://www.dota2.com/news">
           <div class="standartButton">
             <div class="buttonText">See What's New</div>
           </div>
@@ -443,7 +443,8 @@ export default {
     transition-duration: .2s;
 }
 .standartButton:hover {
-  border: 3px solid #ff6046;
+  /* border: 3px solid #ff6046; */
+  border: 3px solid #ff0000;
 }
 .standartButtonContainer{
   z-index: auto;
@@ -527,6 +528,13 @@ export default {
     z-index: 5;
     cursor: pointer;
     flex-direction: row;
+}
+.heroIcon:hover{
+    transform: scale(1.1);
+    box-shadow: 3px 3px 8px #000;
+    background-size: 100%;
+    filter: saturate(1);
+    z-index: 4;
 }
 .marquee-wrapper{
     display: flex;

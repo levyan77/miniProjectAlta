@@ -578,7 +578,7 @@ export default {
           return [this.opacity,this.hidden,this.zIndex1, this.zIndex2]
       },
       setID(){
-          this.heroIDnumber = 1
+          this.heroIDnumber = 3
           return this.heroIDnumber
       },
     },
@@ -735,6 +735,9 @@ export default {
     opacity: .4;
     cursor: pointer;
 }
+.ArrowLeftnav:hover{
+    opacity: 1;
+}
 .CenterGrid{
     width: 80px;
     height: 64px;
@@ -751,6 +754,9 @@ export default {
     opacity: .4;
     cursor: pointer;
 }
+.CenterGrid:hover{
+    opacity: 1;
+}
 .ArrowRightnav{
     width: 30px;
     height: 64px;
@@ -764,6 +770,9 @@ export default {
     transition-duration: .1s;
     opacity: .4;
     cursor: pointer;
+}
+.ArrowRightnav:hover{
+    opacity: 1;
 }
 .gridDot{
     width: 16px;
