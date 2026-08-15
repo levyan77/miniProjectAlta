@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <div class="gridList" style="height: 500px;" data-aos="fade-up" data-aos-duration="2000">
+  <div class="gridList" data-aos="fade-up" data-aos-duration="2000">
   <a
     v-for="(hero,i) in heroes"
     :key="i"
